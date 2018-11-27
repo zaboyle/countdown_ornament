@@ -1,4 +1,0 @@
-{
-    "board": "arduino:avr:circuitplay32u4cat",
-    "port": "COM3"
-}
