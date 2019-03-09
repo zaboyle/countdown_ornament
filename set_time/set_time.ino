@@ -16,7 +16,7 @@ void setup() {
      The format is TssmmhhWDDMMYYYY
      (the letter T and then seconds, minutes, hours,
      weekday 1-7 starting with Sunday, day, month, year). */
-  String currentTime = "T002720724112018";
+  String currentTime = "T004618305032019";
   char buff[BUFF_MAX];
   currentTime.toCharArray(buff, BUFF_MAX);
   set_time(buff);

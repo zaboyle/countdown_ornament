@@ -65,10 +65,10 @@ void loop() {
   snprintf(buff, BUFF_MAX, "%d.%02d.%02d %02d:%02d:%02d", t.year,
            t.mon, t.mday, t.hour, t.min, t.sec);
   time_t currentTime = get_time_t(buff);
-  snprintf(buff, BUFF_MAX, "2017/12/25 00:00:01");
+  snprintf(buff, BUFF_MAX, "2019/12/25 00:00:01");
   time_t xmas = get_time_t(buff);
-  Serial.println(currentTime);
-  Serial.println(xmas);
+  //Serial.println(currentTime);
+  //Serial.println(xmas);
 
   int daysLeft = ((xmas - currentTime) / 86400) + 1;
   Serial.println(daysLeft);
@@ -77,16 +77,28 @@ void loop() {
   matrix.setTextSize(1);
   matrix.setTextWrap(false);  // we dont want text to wrap so it scrolls nicely
   matrix.clear();
-  matrix.setTextColor(100);
-  snprintf(buff, BUFF_MAX, "%d days left!", daysLeft);
-  
-  for (int8_t x = 16; x >= -80; x--) {
+  matrix.setTextColor(50);
+
+  if(daysLeft == 0) {
+    snprintf(buff, BUFF_MAX, "merry christmas!");
+  }
+  else {
+    snprintf(buff, BUFF_MAX, "  %d days until xmas!", daysLeft);
+  }
+
+
+  for (int8_t x = 0; x >= -120; x--) {
     matrix.clear();
-    matrix.setCursor(x, 0);
+    if(daysLeft == 0) {
+      matrix.setCursor(x, -1);
+    }
+    else {
+      matrix.setCursor(x, 0);
+    }
     matrix.print(buff);
     delay(50);
   }
-
+  
   digitalWrite(6, LOW);
   delay(100);
 }
